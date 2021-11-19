@@ -292,7 +292,7 @@ screen navigation():
 
     vbox:
         style_prefix "navigation"
-        if main_menu:
+        if renpy.current_screen().screen_name[0] == "main_menu":
             xalign 0.5
             yalign 0.9
         else:
@@ -313,7 +313,7 @@ screen navigation():
 
         textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -428,8 +428,6 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     style_prefix "game_menu"
 
     if main_menu:
-        add gui.main_menu_background
-    else:
         add gui.game_menu_background
 
     frame:
