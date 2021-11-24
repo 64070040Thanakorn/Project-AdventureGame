@@ -59,6 +59,9 @@ style vscrollbar:
     xsize gui.scrollbar_size
     base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    unscrollable "hide"
+    ## Prevents Ren'Py from showing a scrollbar when there's nothing to scroll
+
 
 style slider:
     ysize gui.slider_size
@@ -251,14 +254,12 @@ screen quick_menu():
             style_group "quick"
             xalign 0.5
             yalign 1.0
-
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
+            textbutton _("Rollback") action Rollback() 
+            textbutton _("History Log") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
+            textbutton _("Load") action ShowMenu('load')
             textbutton _("Settings") action ShowMenu('preferences')
 
 
@@ -266,6 +267,10 @@ screen quick_menu():
 ## the player has not explicitly hidden the interface.
 init python:
     config.overlay_screens.append("quick_menu")
+    config.has_autosave = False
+    config.has_quicksave = False
+    config.autosave_on_quit = False
+    config.autosave_on_choice = False
 
 default quick_menu = True
 
@@ -277,7 +282,6 @@ style quick_button:
 
 style quick_button_text:
     properties gui.button_text_properties("quick_button")
-
 
 ################################################################################
 ## Main and Game Menu Screens
@@ -397,7 +401,7 @@ style main_menu_frame:
     # background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
-    xalign 0.6
+    xalign 0.57
     xoffset -30
     xmaximum 800
     yalign 0.1
@@ -526,7 +530,7 @@ style game_menu_side:
     spacing 10
 
 style game_menu_label:
-    xpos 50
+    xpos 40
     ysize 120
 
 style game_menu_label_text:
@@ -663,7 +667,7 @@ screen file_slots(title):
 
                 spacing gui.page_spacing
 
-                textbutton _("<") action FilePagePrevious()
+                
 
                 if config.has_autosave:
                     textbutton _("{#auto_page}A") action FilePage("auto")
@@ -672,10 +676,10 @@ screen file_slots(title):
                     textbutton _("{#quick_page}Q") action FilePage("quick")
 
                 ## range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 10):
+                for page in range(1, 4):
                     textbutton "[page]" action FilePage(page)
 
-                textbutton _(">") action FilePageNext()
+                
 
 
 style page_label is gui_label
@@ -876,6 +880,7 @@ style slider_vbox:
     xsize 450
 
 
+
 ## History screen ##############################################################
 ##
 ## This is a screen that displays the dialogue history to the player. While
@@ -891,7 +896,7 @@ screen history():
     ## Avoid predicting this screen, as it can be very large.
     predict False
 
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport")):
 
         style_prefix "history"
 
@@ -921,11 +926,7 @@ screen history():
         if not _history_list:
             label _("The dialogue history is empty.")
 
-
-## This determines what tags are allowed to be displayed on the history screen.
-
-define gui.history_allow_tags = { "alt", "noalt" }
-
+define gui.history_allow_tags = set()
 
 style history_window is empty
 
@@ -966,7 +967,6 @@ style history_label:
 
 style history_label_text:
     xalign 0.5
-
 
 ## Help screen #################################################################
 ##

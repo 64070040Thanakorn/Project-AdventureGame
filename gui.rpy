@@ -187,7 +187,7 @@ define gui.confirm_button_text_xalign = 0.5
 define gui.page_button_borders = Borders(10, 4, 10, 4)
 
 define gui.quick_button_borders = Borders(10, 4, 10, 0)
-define gui.quick_button_text_size = 14
+define gui.quick_button_text_size = 20
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
@@ -222,8 +222,8 @@ define gui.choice_button_text_insensitive_color = "#444444"
 
 ## The save slot button.
 define gui.slot_button_width = 150
-define gui.slot_button_height = 100
-define gui.slot_button_borders = Borders(10, 15, 10, 15)
+define gui.slot_button_height = 110
+define gui.slot_button_borders = Borders(10, 10, 10, 10)
 define gui.slot_button_text_size = 14
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = gui.idle_small_color
@@ -231,8 +231,8 @@ define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
 ## The width and height of thumbnails used by the save slots.
-define config.thumbnail_width = 150
-define config.thumbnail_height = 100
+define config.thumbnail_width = 130
+define config.thumbnail_height = 80
 
 ## The number of columns and rows in the grid of save slots.
 define gui.file_slot_cols = 3
@@ -335,24 +335,25 @@ define gui.unscrollable = "hide"
 ## The history screen displays dialogue that the player has already dismissed.
 
 ## The number of blocks of dialogue history Ren'Py will keep.
-define config.history_length = 250
+define config.history_length = 50
 
 ## The height of a history screen entry, or None to make the height variable at
 ## the cost of performance.
-define gui.history_height = 140
+define gui.history_height = None
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.history_name_xpos = 155
+define gui.history_name_xpos = 50
 define gui.history_name_ypos = 0
-define gui.history_name_width = 155
+define gui.history_name_width = 90
 define gui.history_name_xalign = 1.0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.history_text_xpos = 170
+define gui.history_text_xpos = 70
 define gui.history_text_ypos = 2
-define gui.history_text_width = 740
+define gui.history_text_width = 50
 define gui.history_text_xalign = 0.0
+define gui.history_text_size = 10
 
 
 ## NVL-Mode ####################################################################
@@ -424,10 +425,10 @@ init python:
     if renpy.variant("small"):
 
         ## Font sizes.
-        gui.text_size = 30
-        gui.name_text_size = 36
+        gui.text_size = 25
+        gui.name_text_size = 30
         gui.notify_text_size = 25
-        gui.interface_text_size = 30
+        gui.interface_text_size = 25
         gui.button_text_size = 30
         gui.label_text_size = 34
 
@@ -446,8 +447,8 @@ init python:
         gui.navigation_spacing = 20
         gui.pref_button_spacing = 10
 
-        gui.history_height = 190
-        gui.history_text_width = 690
+        gui.history_height = 50
+        gui.history_text_width = 60
 
         gui.quick_button_text_size = 20
 

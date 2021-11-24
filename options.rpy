@@ -4,7 +4,6 @@
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
 
-
 ## Basics ######################################################################
 
 ## A human-readable name of the game. This is used to set the default window
@@ -12,7 +11,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Adventure Game")
+define config.name = _("Tale of the Dissension")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -23,7 +22,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "Demo"
+define config.version = "Beta v0.2"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -37,7 +36,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "AdventureGame"
+define build.name = "Tale of the Dissension"
 
 
 ## Sounds and music ############################################################
