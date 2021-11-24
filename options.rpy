@@ -11,7 +11,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Tale of the Dissension")
+define config.name = _("Tale Of the Dissension")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -22,7 +22,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "Beta v0.2"
+define config.version = "Beta V0.2"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -36,7 +36,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "Tale of the Dissension"
+define build.name = "TaleOfTheDissension"
 
 
 ## Sounds and music ############################################################
@@ -193,7 +193,7 @@ init python:
 
     build.documentation('*.html')
     build.documentation('*.txt')
-
+    build.directory_name = "TaleOfTheDissension"
 
 ## A Google Play license key is required to download expansion files and perform
 ## in-app purchases. It can be found on the "Services & APIs" page of the Google
