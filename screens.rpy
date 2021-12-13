@@ -3,7 +3,7 @@
 ################################################################################
 
 init offset = -1
-
+ 
 
 ################################################################################
 ## Styles
@@ -254,8 +254,8 @@ screen quick_menu():
             style_group "quick"
             xalign 0.5
             yalign 1.0
-            textbutton _("Rollback") action Rollback() 
-            textbutton _("History Log") action ShowMenu('history')
+#            textbutton _("Rollback") action Rollback() 
+#            textbutton _("History Log") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
@@ -311,7 +311,7 @@ screen navigation():
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
+        #    textbutton _("History") action ShowMenu("history")
 
             textbutton _("Save") action ShowMenu("save")
 
@@ -894,7 +894,7 @@ screen history():
     tag menu
 
     ## Avoid predicting this screen, as it can be very large.
-    predict False
+    predict True
 
     use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport")):
 
